@@ -1,0 +1,133 @@
+@use "variables" as *; //as is required if you have variables or functions etc
+//as is not required if you refer to the variables like this: variables.$bg-color; instead of $bg-color if you would use the as *
+//this avoids problems with two variables from 2 files that are the same name
+
+@use "reset";
+
+//sass -w scss:css
+//sass -w scss:css --style compressed*
+//version that removes whitespace for performance
+
+//this comment doesn't get compiled
+/*this comment gets compiled in the code*/
+//use the /**/ to make the comment get compiled
+
+//Font Weight: 100, 300, 400, 400(italic), 500, 700
+//First we design for mobile, then for desktop
+
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+// https://m2.material.io/design/guidelines-overview
+
+html {
+    font-size: 10px;
+    //set that 1rem is 10px
+    //em inherits size from parent and rem from the website
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 300vh;
+}
+
+//Main Containers
+header {
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+    background: url("../assets/img/header.jpg") center/cover fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+        line-height: 150%;
+        padding: 10px;
+        z-index: 1; //Make h1 Display on top of everything, default for everthing is 0
+        flex-basis: 15%;
+    }
+    //SASS allows you to just type more nested styles inside the bracket instead of header h1 {} we have header {styles h1{styles}}
+    a {
+        color: inherit; //get the color of the parent (header)
+        z-index: 1;
+        background-color: $bg-color;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 2em;
+    
+        //Center the text, can also use display:flex and alignitems, justify
+        // text-align: center;
+        //line-height: 80px;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            background-color: $bg-hover-color;
+            transition-duration: 0.5s;
+        }
+        /*that works for hover etc just att &:sometihng*/
+    }
+    &::after {
+        content: "";
+        display: block;
+        background-color: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    @media all and (min-width: 700px) {
+        h1 {
+            font-size: 6rem;
+        }
+        /*make text/etc larger for desktop devices*/
+    }
+    @media all and (min-width: 2160px) {
+        h1 {
+            font-size: 9rem;
+        }
+        /*make text/etc even larger for 4k+ devices*/
+    }
+
+}
+/*Adding a black tint to the image/header*/
+/*=================*/
+
+/*style only the <a> element that are in the header*/
+main {
+    h2 {
+        color: white;
+        font-size: 2.6rem;
+        text-align: center;
+        padding-top: 1rem;
+        text-shadow: 0 0 10px black;
+    }
+
+    @media all and (min-width: 700px) {
+        h2 {
+            font-size: 5.2rem;
+        }
+        /*make text/etc larger for desktop devices*/
+    }
+    @media all and (min-width: 2160px) {
+        h2 {
+            font-size: 7.8rem;
+        }
+        /*make text/etc even larger for 4k+ devices*/
+    }
+}
+
+/*PRINTER SECTION | USELESS CODE ⬇*/
+
+@media print {
+    * {
+        text-shadow: none !important;
+        background: none !important;
+        color: black !important;
+    }
+    /*prepare website for printing*/
+}

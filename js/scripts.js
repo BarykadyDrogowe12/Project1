@@ -20,3 +20,5 @@ btn.addEventListener("click", () => {
 });
 
 //it's good to use semicolons ; to optimise the code if all of the whitespace is deleted (spaces, tabs, new lines etc) [minification]
+
+//added nothing useful to the code
